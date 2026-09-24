@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Hogwarts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, white, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, white, transparent),
+                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 160px 120px, white, transparent),
+                radial-gradient(2px 2px at 200px 50px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 250px 150px, white, transparent),
+                radial-gradient(2px 2px at 300px 100px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 350px 180px, white, transparent),
+                radial-gradient(2px 2px at 400px 60px, rgba(255,255,255,0.9), transparent);
+            background-repeat: repeat;
+            background-size: 500px 200px;
+            animation: twinkle 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, #f4e4bc 0%, #e8d5a3 50%, #d4c096 100%);
+            border: 4px solid #8b7355;
+            border-radius: 15px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.3),
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 100px rgba(139, 115, 85, 0.2);
+            max-width: 550px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .form-header h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.5em;
+            color: #3d2817;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .form-header .subtitle {
+            font-family: 'MedievalSharp', cursive;
+            color: #6b4423;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .crest {
+            font-size: 3em;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: #3d2817;
+            margin-bottom: 8px;
+            font-size: 1em;
+            letter-spacing: 1px;
+        }
+
+        label::before {
+            content: '✦ ';
+            color: #8b7355;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #8b7355;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            color: #3d2817;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        input::placeholder {
+            color: #a08060;
+            font-style: italic;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8b0000 0%, #a52a2a 50%, #8b0000 100%);
+            color: #f4e4bc;
+            border: 3px solid #d4af37;
+            border-radius: 10px;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #a52a2a 0%, #cd5c5c 50%, #a52a2a 100%);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .house-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 30px 25px;
+            }
+
+            .form-header h1 {
+                font-size: 1.8em;
+            }
+
+            label {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <div class="crest">⚜</div>
+            <h1>Formulario de Hogwarts</h1>
+            <p class="subtitle">Colegio de Magia y Hechicería</p>
+        </div>
+
+        <form action="guardar.php" method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo</label>
+                <input 
+                    type="text" 
+                    id="nombre" 
+                    name="nombre" 
+                    placeholder="Ej: Harry Potter"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="edad">Edad</label>
+                <input 
+                    type="number" 
+                    id="edad" 
+                    name="edad" 
+                    placeholder="Ej: 17"
+                    min="11"
+                    max="100"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="casa">Casa de Hogwarts</label>
+                <input 
+                    type="text" 
+                    id="casa" 
+                    name="casa" 
+                    placeholder="Ej: Gryffindor, Slytherin, Ravenclaw, Hufflepuff"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="profesor">Profesor Favorito</label>
+                <input 
+                    type="text" 
+                    id="profesor" 
+                    name="profesor" 
+                    placeholder="Ej: Severus Snape"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </form>
+    </div>
+</body>
+</html>
